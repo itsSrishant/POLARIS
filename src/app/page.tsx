@@ -93,36 +93,35 @@ export default function Home() {
             />
           </div>
 
-          {/* Layer 2: YouTube Video Backgrounds (Pre-loaded, seamless transition) */}
+          {/* Layer 2: Local Video Backgrounds (Pre-loaded, seamless transition) */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {mounted && (
               <>
                 {/* Dark Theme Video (Aurora) */}
-                <div className={`absolute inset-0 w-full h-[200%] md:h-[150%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-1000 ${isLight ? 'opacity-0' : 'opacity-80'}`}>
-                  <iframe
-                    src={`https://www.youtube.com/embed/pWQc2OjqSUA?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=pWQc2OjqSUA&playsinline=1&vq=hd1080`}
-                    allow="autoplay; encrypted-media"
-                    className="w-full h-full scale-[1.3] pointer-events-none"
-                    style={{ border: 'none' }}
-                    tabIndex={-1}
-                  ></iframe>
+                <div className={`absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-1000 ${isLight ? 'opacity-0' : 'opacity-80'}`}>
+                  <video
+                    src="/aurora-bg.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover scale-110"
+                  />
                 </div>
 
                 {/* Light Theme Video (Snowfall) */}
-                <div className={`absolute inset-0 w-full h-[200%] md:h-[150%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-1000 ${isLight ? 'opacity-80' : 'opacity-0'}`}>
-                  <iframe
-                    src={`https://www.youtube.com/embed/gcea2l_LuJk?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=gcea2l_LuJk&playsinline=1&vq=hd1080`}
-                    allow="autoplay; encrypted-media"
-                    className="w-full h-full scale-[1.3] pointer-events-none"
-                    style={{ border: 'none' }}
-                    tabIndex={-1}
-                  ></iframe>
+                <div className={`absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-1000 ${isLight ? 'opacity-80' : 'opacity-0'}`}>
+                  <video
+                    src="/snowfall-bg.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover scale-110"
+                  />
                 </div>
               </>
             )}
-            
-            {/* Absolute invisible shield to block ALL clicks */}
-            <div className="absolute inset-0 z-50 w-full h-full pointer-events-auto opacity-0" style={{ cursor: 'default' }}></div>
           </div>
 
           {/* Layer 3: Immersive CSS Effects (Snowflakes / Aurora Dust) */}
