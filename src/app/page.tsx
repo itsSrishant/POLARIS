@@ -93,20 +93,36 @@ export default function Home() {
             />
           </div>
 
-          {/* Layer 2: YouTube Video Background (High Quality, Seamless) */}
-          <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Layer 2: YouTube Video Backgrounds (Pre-loaded, seamless transition) */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {mounted && (
-              <div className="absolute inset-0 w-full h-[150%] md:h-[120%] lg:h-[150%] xl:h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                <iframe
-                  key={videoId}
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=${videoId}&playsinline=1&vq=hd1080`}
-                  allow="autoplay; encrypted-media"
-                  className="w-full h-full opacity-80 scale-125"
-                  style={{ pointerEvents: 'none' }}
-                  tabIndex={-1}
-                ></iframe>
-              </div>
+              <>
+                {/* Dark Theme Video (Aurora) */}
+                <div className={`absolute inset-0 w-full h-[200%] md:h-[150%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-1000 ${isLight ? 'opacity-0' : 'opacity-80'}`}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/pWQc2OjqSUA?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=pWQc2OjqSUA&playsinline=1&vq=hd1080`}
+                    allow="autoplay; encrypted-media"
+                    className="w-full h-full scale-[1.3] pointer-events-none"
+                    style={{ border: 'none' }}
+                    tabIndex={-1}
+                  ></iframe>
+                </div>
+
+                {/* Light Theme Video (Snowfall) */}
+                <div className={`absolute inset-0 w-full h-[200%] md:h-[150%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-1000 ${isLight ? 'opacity-80' : 'opacity-0'}`}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/gcea2l_LuJk?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=gcea2l_LuJk&playsinline=1&vq=hd1080`}
+                    allow="autoplay; encrypted-media"
+                    className="w-full h-full scale-[1.3] pointer-events-none"
+                    style={{ border: 'none' }}
+                    tabIndex={-1}
+                  ></iframe>
+                </div>
+              </>
             )}
+            
+            {/* Absolute invisible shield to block ALL clicks */}
+            <div className="absolute inset-0 z-50 w-full h-full pointer-events-auto opacity-0" style={{ cursor: 'default' }}></div>
           </div>
 
           {/* Layer 3: Immersive CSS Effects (Snowflakes / Aurora Dust) */}
@@ -115,9 +131,9 @@ export default function Home() {
           </div>
 
           {/* Layer 4: Gradient Overlay for Readability */}
-          <div className={`absolute inset-0 z-20 pointer-events-none transition-colors duration-500 ${
+          <div className={`absolute inset-0 z-20 pointer-events-none transition-colors duration-1000 ${
             isLight 
-              ? 'bg-gradient-to-b from-polar-night/70 via-polar-night/30 to-polar-night' 
+              ? 'bg-gradient-to-b from-polar-night/70 via-polar-night/40 to-polar-night' 
               : 'bg-gradient-to-b from-polar-night/80 via-polar-night/60 to-polar-night'
           }`}></div>
 
