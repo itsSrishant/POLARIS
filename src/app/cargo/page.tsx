@@ -17,12 +17,12 @@ export default function CargoTracking() {
           <table className="w-full text-left text-sm">
             <thead className="bg-polar-night/50 border-b border-ice-border text-mist">
               <tr>
-                <th className="px-6 py-4 font-medium">Cargo ID</th>
+                <th className="px-6 py-4 font-medium">Manifest ID</th>
                 <th className="px-6 py-4 font-medium">Item Name</th>
                 <th className="px-6 py-4 font-medium">Category</th>
                 <th className="px-6 py-4 font-medium">Destination</th>
-                <th className="px-6 py-4 font-medium">Priority</th>
-                <th className="px-6 py-4 font-medium">Status</th>
+                <th className="px-6 py-4 font-medium">Dispatch Priority</th>
+                <th className="px-6 py-4 font-medium">AL-1403 Clearance Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-ice-border">
@@ -33,10 +33,10 @@ export default function CargoTracking() {
                   <td className="px-6 py-4 text-mist">{item.category}</td>
                   <td className="px-6 py-4 text-mist">{item.destination}</td>
                   <td className="px-6 py-4">
-                    <span className={cn("px-2 py-1 rounded text-[10px] uppercase font-bold", item.priority === 'Critical' ? 'bg-critical/10 text-critical border border-critical/20' : item.priority === 'High' ? 'bg-warning/10 text-warning border border-warning/20' : 'bg-ice-white/10 text-ice-white border border-ice-white/20')}>{item.priority}</span>
+                    <span className={cn("px-2 py-1 rounded text-[10px] uppercase font-bold", item.priority === 'Time-Critical (Early Summer)' ? 'bg-critical/10 text-critical border border-critical/20' : item.priority === 'High' ? 'bg-warning/10 text-warning border border-warning/20' : 'bg-ice-white/10 text-ice-white border border-ice-white/20')}>{item.priority}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={cn("px-2 py-1 rounded text-[10px] uppercase font-bold", item.status === 'Delayed' ? 'bg-critical/10 text-critical border border-critical/20' : item.status === 'Deployed' ? 'bg-success/10 text-success border border-success/20' : 'bg-aurora-mint/10 text-aurora-mint border border-aurora-mint/20')}>{item.status}</span>
+                    <span className={cn("px-2 py-1 rounded text-[10px] uppercase font-bold", item.status === 'Form AL-1403 Pending' ? 'bg-critical/10 text-critical border border-critical/20' : item.status === 'Delivered to Station' ? 'bg-success/10 text-success border border-success/20' : 'bg-aurora-mint/10 text-aurora-mint border border-aurora-mint/20')}>{item.status}</span>
                   </td>
                 </tr>
               ))}

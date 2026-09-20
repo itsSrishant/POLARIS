@@ -8,36 +8,37 @@ export default function ExpeditionPlanning() {
     <DashboardLayout role="planning">
       <div className="flex flex-col gap-8">
         <div>
-          <h1 className="text-3xl font-bold text-ice-white mb-2">Expedition Planning</h1>
-          <p className="text-mist">Command center for ongoing operations and upcoming missions.</p>
+          <h1 className="text-3xl font-bold text-ice-white mb-2">ISEA Operations & Planning</h1>
+          <p className="text-mist">Command center for Indian Scientific Expedition to Antarctica (ISEA) deployments.</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-glacier-navy border border-ice-border rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-4"><Users className="w-5 h-5 text-aurora-mint" /><span className="text-sm font-medium text-mist">Active Personnel</span></div>
+            <div className="flex items-center gap-3 mb-4"><Users className="w-5 h-5 text-aurora-mint" /><span className="text-sm font-medium text-mist">Stationed Personnel</span></div>
             <div className="text-3xl font-bold text-ice-white mb-1">{EXPEDITION_STATS.activePersonnel}</div>
-            <div className="text-xs text-mist">Across 3 outposts</div>
+            <div className="text-xs text-mist">Maitri & Bharati Stations</div>
           </div>
           <div className="bg-glacier-navy border border-ice-border rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-4"><Truck className="w-5 h-5 text-polar-cyan" /><span className="text-sm font-medium text-mist">Cargo In Transit</span></div>
+            <div className="flex items-center gap-3 mb-4"><Truck className="w-5 h-5 text-polar-cyan" /><span className="text-sm font-medium text-mist">AL-1403 Cargo Declared</span></div>
             <div className="text-3xl font-bold text-ice-white mb-1">{EXPEDITION_STATS.cargoInTransit}</div>
-            <div className="text-xs text-mist">Next drop: {EXPEDITION_STATS.nextSupplyDrop}</div>
+            <div className="text-xs text-mist">Next milestone: {EXPEDITION_STATS.nextSupplyDrop}</div>
           </div>
           <div className="bg-glacier-navy border border-ice-border rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-4"><Map className="w-5 h-5 text-aurora-violet" /><span className="text-sm font-medium text-mist">Weather Status</span></div>
+            <div className="flex items-center gap-3 mb-4"><Map className="w-5 h-5 text-aurora-violet" /><span className="text-sm font-medium text-mist">Weather Advisory</span></div>
             <div className="text-2xl font-bold text-warning mb-1">{EXPEDITION_STATS.weatherStatus}</div>
-            <div className="text-xs text-mist">Approaching storm system</div>
+            <div className="text-xs text-mist">Schirmacher Oasis Region</div>
           </div>
           <div className="bg-glacier-navy border border-ice-border rounded-2xl p-6">
-            <div className="flex items-center gap-3 mb-4"><AlertTriangle className="w-5 h-5 text-critical" /><span className="text-sm font-medium text-mist">Active Alerts</span></div>
+            <div className="flex items-center gap-3 mb-4"><AlertTriangle className="w-5 h-5 text-critical" /><span className="text-sm font-medium text-mist">Action Required</span></div>
             <div className="text-3xl font-bold text-critical mb-1">{EXPEDITION_STATS.criticalAlerts}</div>
-            <div className="text-xs text-mist">Generator failure at Base Beta</div>
+            <div className="text-xs text-mist">Medical Clearances Pending for Voyage</div>
           </div>
         </div>
         
-        <div className="bg-glacier-navy border border-ice-border rounded-2xl p-6 min-h-[400px] flex items-center justify-center text-mist flex-col gap-4">
-          <Map className="w-12 h-12 opacity-50" />
-          <p>Interactive Topographical Map goes here</p>
+        <div className="bg-glacier-navy border border-ice-border rounded-2xl p-6 min-h-[400px] flex flex-col items-center justify-center text-mist gap-4 text-center">
+          <Map className="w-12 h-12 opacity-50 mb-2" />
+          <h3 className="text-lg text-ice-white font-medium">ISEA Operations Map</h3>
+          <p className="max-w-md">Simulated topographical view of Larsemann Hills (Bharati) and Schirmacher Oasis (Maitri). Live tracking is not available during planning phase.</p>
         </div>
       </div>
     </DashboardLayout>
