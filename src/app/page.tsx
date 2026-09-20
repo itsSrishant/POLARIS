@@ -14,15 +14,16 @@ export default function Home() {
       {/* Hero Section */}
       <main className="flex-1 mt-20">
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-          {/* Aurora Background Image */}
-          <div className="absolute inset-0 z-0">
-            <Image 
-              src="/aurora-bg.png" 
-              alt="Aurora Borealis Polar Landscape" 
-              fill 
-              className="object-cover opacity-70"
-              priority
-            />
+          {/* Aurora Background Video */}
+          <div className="absolute inset-0 z-0 overflow-hidden bg-polar-night">
+            <div className="absolute inset-0 w-full h-[150%] md:h-[120%] lg:h-[150%] xl:h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+              <iframe
+                src="https://www.youtube.com/embed/N-TV_6eIDxw?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=N-TV_6eIDxw&playsinline=1"
+                allow="autoplay; encrypted-media"
+                className="w-full h-full opacity-60 scale-125"
+                style={{ pointerEvents: 'none' }}
+              ></iframe>
+            </div>
             {/* Gradient Overlay for Readability */}
             <div className="absolute inset-0 bg-gradient-to-b from-polar-night/80 via-polar-night/60 to-polar-night z-10"></div>
           </div>
