@@ -1,6 +1,49 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme inline {
+  --color-polar-night: var(--color-polar-night);
+  --color-glacier-navy: var(--color-glacier-navy);
+  --color-deep-ice: var(--color-deep-ice);
+  --color-aurora-mint: var(--color-aurora-mint);
+  --color-polar-cyan: var(--color-polar-cyan);
+  --color-aurora-violet: var(--color-aurora-violet);
+  --color-ice-white: var(--color-ice-white);
+  --color-mist: var(--color-mist);
+  --color-ice-border: var(--color-ice-border);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-critical: var(--color-critical);
+
+  --font-sans: var(--font-primary);
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+}
+
+:root {
+  /* LIGHT MODE (Snow & Ice) */
+  --color-polar-night: #F0F4F8; /* Light blue-grey background */
+  --color-glacier-navy: #FFFFFF; /* Pure white cards */
+  --color-deep-ice: #E2E8F0; /* Light borders */
+  --color-aurora-mint: #0077B6; /* Strong blue accent */
+  --color-polar-cyan: #00B4D8; /* Light blue accent */
+  --color-aurora-violet: #023E8A; /* Dark blue accent */
+  --color-ice-white: #0B192C; /* Deep navy text */
+  --color-mist: #475569; /* Slate grey secondary text */
+  --color-ice-border: #CBD5E1; /* Soft border */
+  
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-critical: #EF4444;
+
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
+  --font-primary: var(--font-inter);
+}
+
+.dark {
+  /* DARK MODE (Polar Night) */
   --color-polar-night: #071426;
   --color-glacier-navy: #10243B;
   --color-deep-ice: #142A42;
@@ -10,22 +53,15 @@
   --color-ice-white: #EAF4FF;
   --color-mist: #A8B8CC;
   --color-ice-border: #263B52;
-  --color-success: #65D6A6;
-  --color-warning: #F5C66A;
-  --color-critical: #FF8295;
-
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-:root {
-  --background: #071426;
-  --foreground: #EAF4FF;
+  
+  --color-background: #071426;
+  --color-foreground: #EAF4FF;
+  --font-primary: var(--font-outfit);
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   font-family: var(--font-sans), sans-serif;
   overflow-x: hidden;
 }
@@ -38,7 +74,7 @@ body {
 }
 
 .aurora-text {
-  background: linear-gradient(90deg, #4DE2C1, #77BFFF, #A78BFA);
+  background: linear-gradient(90deg, var(--color-aurora-mint), var(--color-polar-cyan), var(--color-aurora-violet));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -46,6 +82,6 @@ body {
 
 /* Subtle border glow */
 .card-glow:hover {
-  box-shadow: 0 0 20px rgba(77, 226, 193, 0.05);
-  border-color: rgba(77, 226, 193, 0.2);
+  box-shadow: 0 0 20px rgba(var(--color-aurora-mint), 0.1);
+  border-color: var(--color-aurora-mint);
 }

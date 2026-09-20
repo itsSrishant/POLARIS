@@ -1,31 +1,46 @@
+'use client';
+
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import Link from 'next/link';
-import Image from 'next/image';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import { 
   ArrowRight, Compass, Map, Package, Box, Users, Truck, AlertTriangle, Ship 
 } from 'lucide-react';
 
 export default function Home() {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const videoId = mounted && theme === 'light' ? 'gcea2l_LuJk' : 'pWQc2OjqSUA';
+
   return (
-    <div className="min-h-screen bg-polar-night flex flex-col overflow-hidden">
+    <div className="min-h-screen bg-polar-night flex flex-col overflow-hidden transition-colors duration-300">
       <Navbar />
 
       {/* Hero Section */}
       <main className="flex-1 mt-20">
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-          {/* Aurora Background Video */}
+          {/* Dynamic Background Video */}
           <div className="absolute inset-0 z-0 overflow-hidden bg-polar-night">
-            <div className="absolute inset-0 w-full h-[150%] md:h-[120%] lg:h-[150%] xl:h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-              <iframe
-                src="https://www.youtube.com/embed/N-TV_6eIDxw?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=N-TV_6eIDxw&playsinline=1"
-                allow="autoplay; encrypted-media"
-                className="w-full h-full opacity-60 scale-125"
-                style={{ pointerEvents: 'none' }}
-              ></iframe>
-            </div>
+            {mounted && (
+              <div className="absolute inset-0 w-full h-[150%] md:h-[120%] lg:h-[150%] xl:h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <iframe
+                  key={videoId}
+                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=${videoId}&playsinline=1`}
+                  allow="autoplay; encrypted-media"
+                  className="w-full h-full opacity-60 scale-125"
+                  style={{ pointerEvents: 'none' }}
+                ></iframe>
+              </div>
+            )}
             {/* Gradient Overlay for Readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-polar-night/80 via-polar-night/60 to-polar-night z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-polar-night/90 via-polar-night/50 to-polar-night z-10 transition-colors duration-300"></div>
           </div>
 
           <div className="relative z-20 max-w-7xl mx-auto px-6 w-full text-center flex flex-col items-center">
@@ -39,14 +54,14 @@ export default function Home() {
               <span className="aurora-text">Polar Frontier.</span>
             </h1>
             
-            <p className="text-lg md:text-xl text-mist max-w-2xl mb-12 leading-relaxed backdrop-blur-sm bg-polar-night/20 p-4 rounded-xl">
+            <p className="text-lg md:text-xl text-mist max-w-2xl mb-12 leading-relaxed backdrop-blur-sm bg-polar-night/30 p-4 rounded-xl border border-ice-border/30">
               Plan expeditions. Track cargo. Manage resources. Coordinate teams. Respond when every second matters.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <Link 
                 href="/select-role" 
-                className="px-8 py-4 rounded-full bg-aurora-mint text-polar-night font-semibold hover:bg-aurora-mint/90 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-[0_0_30px_rgba(77,226,193,0.3)]"
+                className="px-8 py-4 rounded-full bg-aurora-mint text-white font-semibold hover:bg-aurora-mint/90 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 shadow-[0_0_30px_rgba(77,226,193,0.3)]"
               >
                 Explore POLARIS <ArrowRight className="w-5 h-5" />
               </Link>
@@ -65,7 +80,7 @@ export default function Home() {
         </section>
 
         {/* Signal Strip */}
-        <section className="border-y border-ice-border bg-glacier-navy/30 backdrop-blur-sm relative z-20">
+        <section className="border-y border-ice-border bg-glacier-navy/50 backdrop-blur-sm relative z-20 transition-colors duration-300">
           <div className="max-w-7xl mx-auto px-6 py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-ice-border/50">
               <div className="flex flex-col items-center justify-center gap-2 text-center">
@@ -113,7 +128,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-polar-cyan/5"></div>
               <Ship className="w-10 h-10 text-polar-cyan mx-auto mb-4 relative z-10 opacity-80" />
               <h3 className="text-xl font-semibold text-polar-cyan mb-4 relative z-10">POLAR ENVIRONMENT</h3>
-              <p className="text-sm text-ice-white/70 relative z-10">Limited connectivity, harsh conditions and rapidly changing situations.</p>
+              <p className="text-sm text-mist relative z-10">Limited connectivity, harsh conditions and rapidly changing situations.</p>
             </div>
           </div>
         </section>
@@ -137,7 +152,7 @@ export default function Home() {
                 { title: 'Asset Management', desc: 'Maintain visibility of critical vehicles, equipment and other expedition assets throughout their lifecycle.', icon: Truck, color: 'text-aurora-mint' },
                 { title: 'Emergency Response', desc: 'Coordinate alerts, incidents, personnel status and response actions when situations change.', icon: AlertTriangle, color: 'text-critical' },
               ].map((feature, i) => (
-                <div key={i} className="bg-polar-night border border-ice-border rounded-2xl p-8 hover:border-polar-cyan/30 hover:-translate-y-1 transition-all duration-300 card-glow group relative overflow-hidden">
+                <div key={i} className="bg-glacier-navy border border-ice-border rounded-2xl p-8 hover:border-polar-cyan/30 hover:-translate-y-1 transition-all duration-300 card-glow group relative overflow-hidden">
                   <div className="w-12 h-12 rounded-xl bg-deep-ice flex items-center justify-center mb-6 group-hover:bg-deep-ice/80 transition-colors border border-ice-border">
                     <feature.icon className={`w-6 h-6 ${feature.color}`} />
                   </div>
@@ -164,7 +179,7 @@ export default function Home() {
               <Users className="w-10 h-10 text-aurora-mint mb-6 relative z-10" />
               <h3 className="text-2xl font-bold text-ice-white mb-2 relative z-10">EXPEDITION TEAMS</h3>
               <p className="text-mist mb-8 relative z-10 italic">"Plan and coordinate every mission from one operational workspace."</p>
-              <ul className="space-y-3 relative z-10 text-sm text-ice-white/80">
+              <ul className="space-y-3 relative z-10 text-sm text-mist">
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-aurora-mint" /> Mission planning</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-aurora-mint" /> Team coordination</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-aurora-mint" /> Movement tracking</li>
@@ -176,7 +191,7 @@ export default function Home() {
               <Package className="w-10 h-10 text-polar-cyan mb-6 relative z-10" />
               <h3 className="text-2xl font-bold text-ice-white mb-2 relative z-10">LOGISTICS TEAMS</h3>
               <p className="text-mist mb-8 relative z-10 italic">"Know where every critical resource is and where it needs to go."</p>
-              <ul className="space-y-3 relative z-10 text-sm text-ice-white/80">
+              <ul className="space-y-3 relative z-10 text-sm text-mist">
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-polar-cyan" /> Cargo tracking</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-polar-cyan" /> Inventory visibility</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-polar-cyan" /> Supply management</li>
@@ -188,7 +203,7 @@ export default function Home() {
               <Truck className="w-10 h-10 text-aurora-violet mb-6 relative z-10" />
               <h3 className="text-2xl font-bold text-ice-white mb-2 relative z-10">OPERATIONS MANAGERS</h3>
               <p className="text-mist mb-8 relative z-10 italic">"Maintain a clear view of people, assets and expedition readiness."</p>
-              <ul className="space-y-3 relative z-10 text-sm text-ice-white/80">
+              <ul className="space-y-3 relative z-10 text-sm text-mist">
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-aurora-violet" /> Asset monitoring</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-aurora-violet" /> Personnel status</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-aurora-violet" /> Operational overview</li>
@@ -200,7 +215,7 @@ export default function Home() {
               <AlertTriangle className="w-10 h-10 text-critical mb-6 relative z-10" />
               <h3 className="text-2xl font-bold text-ice-white mb-2 relative z-10">COMMAND & RESPONSE</h3>
               <p className="text-mist mb-8 relative z-10 italic">"Respond quickly with the information needed when conditions change."</p>
-              <ul className="space-y-3 relative z-10 text-sm text-ice-white/80">
+              <ul className="space-y-3 relative z-10 text-sm text-mist">
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-critical" /> Incident alerts</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-critical" /> Emergency coordination</li>
                 <li className="flex items-center gap-2"><ArrowRight className="w-4 h-4 text-critical" /> Response tracking</li>
@@ -216,12 +231,12 @@ export default function Home() {
           
           <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
             <h2 className="text-4xl md:text-6xl font-bold text-ice-white mb-6">From planning to response, stay expedition-ready.</h2>
-            <p className="text-xl text-ice-white/80 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-mist mb-12 max-w-3xl mx-auto">
               POLARIS brings the complete polar logistics picture together so teams can plan with confidence, coordinate efficiently and respond when it matters.
             </p>
             <Link 
               href="/select-role" 
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full bg-aurora-mint text-polar-night font-bold text-lg hover:bg-aurora-mint/90 transition-all hover:scale-105 shadow-[0_0_40px_rgba(77,226,193,0.3)]"
+              className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-full bg-aurora-mint text-white font-bold text-lg hover:bg-aurora-mint/90 transition-all hover:scale-105 shadow-[0_0_40px_rgba(77,226,193,0.3)]"
             >
               Enter POLARIS <ArrowRight className="w-6 h-6" />
             </Link>
