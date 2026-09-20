@@ -72,6 +72,7 @@ export default function Home() {
   }, []);
 
   const isLight = mounted && theme === 'light';
+  const videoId = isLight ? 'gcea2l_LuJk' : 'pWQc2OjqSUA';
 
   return (
     <div className="min-h-screen bg-polar-night flex flex-col overflow-hidden transition-colors duration-300">
