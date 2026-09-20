@@ -130,6 +130,10 @@ export function DashboardLayout({ children, role }: DashboardLayoutProps) {
           </div>
 
           <div className="flex items-center gap-4">
+            <div className="hidden sm:flex items-center px-3 py-1.5 rounded-full border border-aurora-mint/30 bg-aurora-mint/10 text-aurora-mint text-[10px] font-bold uppercase tracking-wider">
+              Demo Mode: Simulated ISEA Data
+            </div>
+
             <button 
               onClick={() => setIsOffline(!isOffline)}
               className={cn(
