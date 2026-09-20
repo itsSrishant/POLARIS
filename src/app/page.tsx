@@ -3,11 +3,65 @@
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { 
   ArrowRight, Compass, Map, Package, Box, Users, Truck, AlertTriangle, Ship 
 } from 'lucide-react';
+
+// Immersive Particle Component
+const ImmersiveEffects = ({ theme }: { theme: string }) => {
+  const [particles, setParticles] = useState<Array<{ id: number, style: any }>>([]);
+
+  useEffect(() => {
+    // Generate random particles for snow or dust
+    const newParticles = Array.from({ length: 50 }).map((_, i) => {
+      const size = Math.random() * (theme === 'light' ? 4 : 3) + 1;
+      const left = Math.random() * 100;
+      const animationDuration = Math.random() * 10 + (theme === 'light' ? 5 : 10);
+      const animationDelay = Math.random() * 10;
+      
+      return {
+        id: i,
+        style: {
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${left}vw`,
+          animationDuration: `${animationDuration}s`,
+          animationDelay: `-${animationDelay}s`,
+          opacity: Math.random() * 0.5 + 0.3,
+        }
+      };
+    });
+    setParticles(newParticles);
+  }, [theme]);
+
+  if (theme === 'light') {
+    return (
+      <div className="snow-container">
+        {particles.map(p => (
+          <div key={p.id} className="snowflake" style={p.style}></div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="aurora-waves">
+        <div className="aurora-wave-1"></div>
+        <div className="aurora-wave-2"></div>
+        <div className="aurora-wave-3"></div>
+      </div>
+      <div className="snow-container">
+        {particles.map(p => (
+          <div key={p.id} className="dust" style={{...p.style, top: `${Math.random() * 100}vh`}}></div>
+        ))}
+      </div>
+    </>
+  );
+};
 
 export default function Home() {
   const { theme } = useTheme();
@@ -17,7 +71,7 @@ export default function Home() {
     setMounted(true);
   }, []);
 
-  const videoId = mounted && theme === 'light' ? 'gcea2l_LuJk' : 'pWQc2OjqSUA';
+  const isLight = mounted && theme === 'light';
 
   return (
     <div className="min-h-screen bg-polar-night flex flex-col overflow-hidden transition-colors duration-300">
@@ -26,21 +80,24 @@ export default function Home() {
       {/* Hero Section */}
       <main className="flex-1 mt-20">
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-          {/* Dynamic Background Video */}
-          <div className="absolute inset-0 z-0 overflow-hidden bg-polar-night">
-            {mounted && (
-              <div className="absolute inset-0 w-full h-[150%] md:h-[120%] lg:h-[150%] xl:h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                <iframe
-                  key={videoId}
-                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=${videoId}&playsinline=1`}
-                  allow="autoplay; encrypted-media"
-                  className="w-full h-full opacity-60 scale-125"
-                  style={{ pointerEvents: 'none' }}
-                ></iframe>
-              </div>
-            )}
+          {/* Static Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image 
+              src={isLight ? "/snow-bg.png" : "/aurora-bg.png"} 
+              alt="Polar Landscape" 
+              fill 
+              className="object-cover opacity-90 transition-opacity duration-1000"
+              priority
+            />
+            {/* Immersive CSS Effects */}
+            {mounted && <ImmersiveEffects theme={isLight ? 'light' : 'dark'} />}
+            
             {/* Gradient Overlay for Readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-polar-night/90 via-polar-night/50 to-polar-night z-10 transition-colors duration-300"></div>
+            <div className={`absolute inset-0 z-10 transition-colors duration-500 ${
+              isLight 
+                ? 'bg-gradient-to-b from-polar-night/70 via-polar-night/30 to-polar-night' 
+                : 'bg-gradient-to-b from-polar-night/80 via-polar-night/60 to-polar-night'
+            }`}></div>
           </div>
 
           <div className="relative z-20 max-w-7xl mx-auto px-6 w-full text-center flex flex-col items-center">
