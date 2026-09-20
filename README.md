@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# POLARIS
 
-## Getting Started
+SIH 2026
+Problem Statement 62
 
-First, run the development server:
+This repository contains the frontend prototype for the SIH 2026 project.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
+POLARIS brings planning, logistics, assets, personnel and emergency operations into one connected command layer for polar expeditions. It connects the people, resources and information required to operate safely and efficiently in extreme environments.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Problem
+Operating in extreme and remote polar environments requires precise coordination of people, cargo, equipment, resources, and contingency plans. The operational gap in these harsh conditions is a major challenge.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Solution
+One platform for the entire expedition lifecycle. POLARIS connects the people, resources and information required to operate safely and efficiently in polar environments.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
+- **Expedition Planning:** Plan missions, schedules, routes, teams and operational requirements.
+- **Cargo Intelligence:** Track essential cargo from preparation to deployment.
+- **Inventory Intelligence:** Monitor supplies, equipment and consumables.
+- **Personnel Movement:** Track team movements and assignments.
+- **Asset Management:** Maintain visibility of critical vehicles and equipment.
+- **Emergency Response:** Coordinate alerts, incidents, and response actions.
 
-## Learn More
+## Tech Stack
+- Next.js 14+ (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+- Lucide React (Icons)
+- Recharts (Data Visualization)
 
-To learn more about Next.js, take a look at the following resources:
+## Local Development
+1. Clone the repository
+2. Run `npm install` to install dependencies
+3. Run `npm run dev` to start the development server
+4. Open `http://localhost:3000` in your browser
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+This project is configured to be seamlessly deployed on Vercel. Connect your repository to Vercel and it will automatically deploy upon push.
