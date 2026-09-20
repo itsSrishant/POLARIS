@@ -17,9 +17,9 @@ const ImmersiveEffects = ({ theme }: { theme: string }) => {
   useEffect(() => {
     // Generate random particles for snow or dust
     const newParticles = Array.from({ length: 50 }).map((_, i) => {
-      const size = Math.random() * (theme === 'light' ? 4 : 3) + 1;
+      const size = Math.random() * 3 + 1;
       const left = Math.random() * 100;
-      const animationDuration = Math.random() * 10 + (theme === 'light' ? 5 : 10);
+      const animationDuration = Math.random() * 10 + 5;
       const animationDelay = Math.random() * 10;
       
       return {
@@ -35,29 +35,31 @@ const ImmersiveEffects = ({ theme }: { theme: string }) => {
       };
     });
     setParticles(newParticles);
-  }, [theme]);
+  }, []);
 
-  if (theme === 'light') {
-    return (
-      <div className="snow-container">
-        {particles.map(p => (
-          <div key={p.id} className="snowflake" style={p.style}></div>
-        ))}
-      </div>
-    );
-  }
+  const isLight = theme === 'light';
 
   return (
     <>
-      <div className="aurora-waves">
-        <div className="aurora-wave-1"></div>
-        <div className="aurora-wave-2"></div>
-        <div className="aurora-wave-3"></div>
-      </div>
-      <div className="snow-container">
+      {/* Light Theme Snowflakes */}
+      <div className={`snow-container transition-opacity duration-1000 ${isLight ? 'opacity-100' : 'opacity-0'}`}>
         {particles.map(p => (
-          <div key={p.id} className="dust" style={{...p.style, top: `${Math.random() * 100}vh`}}></div>
+          <div key={`snow-${p.id}`} className="snowflake" style={p.style}></div>
         ))}
+      </div>
+
+      {/* Dark Theme Aurora Waves & Dust */}
+      <div className={`transition-opacity duration-1000 ${!isLight ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="aurora-waves">
+          <div className="aurora-wave-1"></div>
+          <div className="aurora-wave-2"></div>
+          <div className="aurora-wave-3"></div>
+        </div>
+        <div className="snow-container">
+          {particles.map(p => (
+            <div key={`dust-${p.id}`} className="dust" style={{...p.style, top: `${Math.random() * 100}vh`}}></div>
+          ))}
+        </div>
       </div>
     </>
   );
@@ -75,7 +77,7 @@ export default function Home() {
   const videoId = isLight ? 'gcea2l_LuJk' : 'pWQc2OjqSUA';
 
   return (
-    <div className="min-h-screen bg-polar-night flex flex-col overflow-hidden transition-colors duration-300">
+    <div className="min-h-screen bg-polar-night flex flex-col overflow-hidden transition-colors duration-1000">
       <Navbar />
 
       {/* Hero Section */}
@@ -174,7 +176,7 @@ export default function Home() {
         </section>
 
         {/* Signal Strip */}
-        <section className="border-y border-ice-border bg-glacier-navy/50 backdrop-blur-sm relative z-20 transition-colors duration-300">
+        <section className="border-y border-ice-border bg-glacier-navy/50 backdrop-blur-sm relative z-20 transition-colors duration-1000">
           <div className="max-w-7xl mx-auto px-6 py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-ice-border/50">
               <div className="flex flex-col items-center justify-center gap-2 text-center">

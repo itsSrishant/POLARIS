@@ -14,26 +14,26 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-polar-night/80 backdrop-blur-md border-b border-ice-border/50">
+    <nav className="fixed top-0 w-full z-50 bg-polar-night/80 backdrop-blur-md border-b border-ice-border/50 transition-colors duration-1000">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-glacier-navy border border-ice-border group-hover:border-aurora-mint/50 transition-colors">
+          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-glacier-navy border border-ice-border group-hover:border-aurora-mint/50 transition-colors duration-1000">
             <Compass className="w-5 h-5 text-aurora-mint" />
           </div>
           <span className="font-semibold text-xl tracking-wide text-ice-white">POLARIS</span>
         </Link>
         
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-mist">
-          <Link href="#overview" className="hover:text-ice-white transition-colors">Overview</Link>
-          <Link href="#platform" className="hover:text-ice-white transition-colors">Platform</Link>
-          <Link href="#intelligence" className="hover:text-ice-white transition-colors">Operations</Link>
+          <Link href="#overview" className="hover:text-ice-white transition-colors duration-1000">Overview</Link>
+          <Link href="#platform" className="hover:text-ice-white transition-colors duration-1000">Platform</Link>
+          <Link href="#intelligence" className="hover:text-ice-white transition-colors duration-1000">Operations</Link>
         </div>
 
         <div className="hidden md:flex items-center gap-4">
           {mounted && (
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full border border-ice-border bg-glacier-navy text-mist hover:text-aurora-mint hover:border-aurora-mint/50 transition-colors"
+              className="p-2 rounded-full border border-ice-border bg-glacier-navy text-mist hover:text-aurora-mint hover:border-aurora-mint/50 transition-colors duration-1000"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
