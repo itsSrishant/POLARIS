@@ -80,27 +80,48 @@ export default function Home() {
       {/* Hero Section */}
       <main className="flex-1 mt-20">
         <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-          {/* Static Background Image */}
+          
+          {/* Layer 1: Static Background Image (Instant Load Fallback) */}
           <div className="absolute inset-0 z-0">
             <Image 
               src={isLight ? "/snow-bg.png" : "/aurora-bg.png"} 
               alt="Polar Landscape" 
               fill 
-              className="object-cover opacity-90 transition-opacity duration-1000"
+              className="object-cover transition-opacity duration-1000"
               priority
             />
-            {/* Immersive CSS Effects */}
-            {mounted && <ImmersiveEffects theme={isLight ? 'light' : 'dark'} />}
-            
-            {/* Gradient Overlay for Readability */}
-            <div className={`absolute inset-0 z-10 transition-colors duration-500 ${
-              isLight 
-                ? 'bg-gradient-to-b from-polar-night/70 via-polar-night/30 to-polar-night' 
-                : 'bg-gradient-to-b from-polar-night/80 via-polar-night/60 to-polar-night'
-            }`}></div>
           </div>
 
-          <div className="relative z-20 max-w-7xl mx-auto px-6 w-full text-center flex flex-col items-center">
+          {/* Layer 2: YouTube Video Background (High Quality, Seamless) */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            {mounted && (
+              <div className="absolute inset-0 w-full h-[150%] md:h-[120%] lg:h-[150%] xl:h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <iframe
+                  key={videoId}
+                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&loop=1&playlist=${videoId}&playsinline=1&vq=hd1080`}
+                  allow="autoplay; encrypted-media"
+                  className="w-full h-full opacity-80 scale-125"
+                  style={{ pointerEvents: 'none' }}
+                  tabIndex={-1}
+                ></iframe>
+              </div>
+            )}
+          </div>
+
+          {/* Layer 3: Immersive CSS Effects (Snowflakes / Aurora Dust) */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            {mounted && <ImmersiveEffects theme={isLight ? 'light' : 'dark'} />}
+          </div>
+
+          {/* Layer 4: Gradient Overlay for Readability */}
+          <div className={`absolute inset-0 z-20 pointer-events-none transition-colors duration-500 ${
+            isLight 
+              ? 'bg-gradient-to-b from-polar-night/70 via-polar-night/30 to-polar-night' 
+              : 'bg-gradient-to-b from-polar-night/80 via-polar-night/60 to-polar-night'
+          }`}></div>
+
+          {/* Content */}
+          <div className="relative z-30 max-w-7xl mx-auto px-6 w-full text-center flex flex-col items-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-aurora-mint/30 bg-aurora-mint/10 backdrop-blur-md mb-8">
               <span className="w-2 h-2 rounded-full bg-aurora-mint animate-pulse"></span>
               <span className="text-xs font-medium text-aurora-mint uppercase tracking-wider">Expedition Operations</span>
